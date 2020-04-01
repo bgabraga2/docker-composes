@@ -1,3 +1,5 @@
+<img src="/docker.png" alt="alt text" height="100">
+
 # Docker Composes
 
 A ideia deste repositório é agregar o maior número de arquivos ***docker-compose.yml*** para quem utiliza containers para criar ambientes de desenvolvimento.
