@@ -1,6 +1,6 @@
 # Aplicações NodeJS
 
-Para aplicações Codeigniter, eu costumo utilizar apenas um container para a aplicação rodar. 
+Para aplicações Codeigniter, eu costumo utilizar apenas dois containers, um para rodar a aplicação, e outro para o banco de dados **MongoDB**
 
 Neste caso utilizo também um Dockerfile para definir o que exatamente meu container vai executar e como ele vai se comportar
 

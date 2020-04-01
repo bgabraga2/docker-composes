@@ -1,0 +1,18 @@
+version: "2"
+services:
+  app:
+    build: .
+    command: npm dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/app
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker-files/data/db/mongodb:/data/db
