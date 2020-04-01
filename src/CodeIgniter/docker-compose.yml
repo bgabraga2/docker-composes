@@ -1,0 +1,46 @@
+version: "2"
+services:
+  web:
+    image: webdevops/php-apache:latest
+    container_name: web-container
+    ports:
+      - "80:80"
+    restart: always
+    volumes:
+      - "..:/app"
+    depends_on:
+      - "mysqldb"
+      - "rediscache"
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysql-container
+    restart: always
+    environment:
+      - MYSQL_DATABASE=database
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=dev
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker-files/data/db/mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    links:
+      - mysqldb
+    ports:
+      - 8085:80
+    environment:
+      - PMA_ARBITRARY=1
+    depends_on:
+      - "mysqldb"
+  rediscache:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./docker-files/cache/redis:/data
+    command: >
+      --requirepass secret
